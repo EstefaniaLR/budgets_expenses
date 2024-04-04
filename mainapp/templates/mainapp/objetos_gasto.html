@@ -1,0 +1,35 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_objetos">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <a class="nuevo" href="{% url 'url_ingresar_objeto_gasto' %}">Ingresar nuevo objeto de gasto</a>
+
+        <div class="info_especifica">
+            <ul>
+            {% for objeto_gasto in objetos_gasto %}
+                <li>
+                    <h3>{{objeto_gasto.nombre}}:</h3>
+                    <h4>{{objeto_gasto.descripcion}}</p>
+                    <div class="buttons_ad">
+                        <button class="button_normal"><a href="{% url 'url_editar_objeto_gasto' objeto_id=objeto_gasto.id %}">Editar</a></button>
+                        <button class="button_red"><a href="{% url 'url_eliminar_objeto_gasto' objeto_id=objeto_gasto.id %}">Eliminar</a></button>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_ingresar">
+
+        <h2>{{ titulo }}</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="id" value="{{establecimiento.id}}" hidden=True/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="codigo">Código:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_medium" name="codigo" required> {{establecimiento.codigo}} </textarea>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="nombre">Nombre:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_large" name="nombre" required> {{establecimiento.nombre}} </textarea>
+                    </div>
+                </div>
+                
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="jefe_zona">Jefe de zona:</label>
+                    </div>
+                    <div class="form_input">
+                        <select class="input_large" name="jefe_zona" required>
+                            <option value={{jefe_seleccionado.bd}}>{{jefe_seleccionado.human}}</option>
+                            {% for jefe_zona in op_jefe_zona %}
+                                <option value={{jefe_zona.bd}}>{{jefe_zona.human}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="ciudad">Ciudad:</label>
+                    </div>
+                    <div class="form_input">
+                        <select class="input_large" name="ciudad" required>
+                            <option value={{ciudad_seleccionada.bd}}>{{ciudad_seleccionada.human}}</option>
+                            {% for ciudad in op_ciudad %}
+                                <option value={{ciudad.bd}}>{{ciudad.human}}</option>
+                            {% endfor %}
+                        </select> 
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="telefono">Teléfono:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_large" name="telefono" required> {{establecimiento.telefono}} </textarea>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="direccion">Dirección:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_large" name="direccion" required> {{establecimiento.direccion}} </textarea>
+                    </div>
+                </div>
+                  
+            </div>
+
+            <br>
+            <button class="button_normal"><a href="{% url 'url_establecimientos' %}">Atrás</a></button>
+            <input class="input_in" type="submit" value="Guardar" />
+
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_establecimientos">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <a class="nuevo" href="{% url 'url_ingresar_establecimiento' %}">Ingresar nuevo establecimiento</a>
+
+        <div class="info_especifica">
+            <ul>
+            {% for establecimiento in establecimientos %}
+                <li>
+                    <h3>{{establecimiento.nombre}} - Código: {{establecimiento.codigo}} </h3>
+                    <h4>Jefe de zona: {{establecimiento.jefe_zona}}</h4>
+                    <h4>Dirección: {{establecimiento.direccion}} - {{establecimiento.ciudad}}</h4>
+                    <div class="buttons_ad">
+                        <button class="button_normal"><a href="{% url 'url_editar_establecimiento' establecimiento_id=establecimiento.id %}">Editar</a></button>
+                        <button class="button_red"><a href="{% url 'url_eliminar_establecimiento' establecimiento_id=establecimiento.id %}">Eliminar</a></button>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}

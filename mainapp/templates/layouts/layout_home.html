@@ -1,0 +1,48 @@
+﻿
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %} - Lib ConS</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
+
+<body>
+
+    <header>
+        <div id="encabezado">
+            <img src="{% static 'images/logo.png' %}"/>
+            <h1>LIBRERÍA ConSentido</h1>
+            <h1>PRESUPUESTOS Y GASTOS</h1>
+        </div>
+    </header> 
+
+    <nav>
+        <div id="nav">
+            <div id="nav_vacio">
+            </div>
+            <div id="menu">
+                <a href="{% url 'url_presupuestos_gastos' %}">Presupuestos y Gastos</a>
+                <a href="{% url 'url_establecimientos' %}">Establecimientos</a>
+                <a href="{% url 'url_objetos_gasto' %}">Objetos de gasto</a>
+            </div>
+            <div id="salir">
+                <button id="button_salir"><a href="{% url 'url_initial' %}">Salir</a></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+
+    <footer>
+        <div class="footer"></div>
+    </footer>
+    
+</body>
+
+</html>

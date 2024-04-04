@@ -1,0 +1,51 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_ingresar">
+
+        <h2>{{ titulo }}</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="id" value="{{objeto_gasto.id}}" hidden=True/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="nombre">Nombre:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_large" name="nombre" required> {{objeto_gasto.nombre}} </textarea>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="descripcion">Descripción:</label>
+                    </div>
+                    <div class="form_input">
+                        <textarea class="input_large" name="descripcion" required> {{objeto_gasto.descripcion}} </textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <button class="button_normal"><a href="{% url 'url_objetos_gasto' %}">Atrás</a></button>
+            <input class="input_in" type="submit" value="Guardar" />
+
+        </form>
+
+    </div>
+{% endblock %}

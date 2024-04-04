@@ -1,0 +1,238 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+
+    {% if inicio %}
+        <div id="content_ingresar">
+
+            <h2>{{ titulo }}</h2>
+
+            {% if messages %}
+                {% for mensaje in messages %}
+                    <h3 class="mensaje">{{mensaje}}</h3>
+                {% endfor %}
+            {% endif %}
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="form_data">
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                        </div>
+                        <div class="form_input">
+                            <input type="text" name="inicio" value="{{inicio}}" hidden=True />
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="anio">Año:</label>
+                        </div>
+                        <div class="form_input">
+                            <input class="input_medium" type="number" name="anio" placeholder="Ingrese año" required />
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="establecimiento">Establecimiento:</label>
+                        </div>
+                        <div class="form_input">
+                            <select class="input_large" name="establecimiento" required>
+                                {% for establecimiento in op_establecimiento %}
+                                    <option value={{establecimiento.id}}>{{establecimiento.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="objeto">Objeto de gasto:</label> 
+                        </div>
+                        <div class="form_input">
+                            <select class="input_large" name="objeto" required>
+                                {% for objeto in op_objeto %}
+                                    <option value={{objeto.id}}>{{objeto.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <button class="button_normal"><a href="{% url 'url_presupuestos_gastos' %}">Atrás</a></button>
+                <input class="input_in" type="submit" value="Continuar" />
+
+            </form>
+
+        </div>
+    {% else %}
+
+        <div id="content_ingresar_pyg_part_1">
+
+            <h2>{{ titulo }}</h2>
+
+            {% if messages %}
+                {% for mensaje in messages %}
+                    <h3>{{mensaje}}</h3>
+                {% endfor %}
+            {% endif %}
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="form_data">
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                        </div>
+                        <div class="form_input">
+                            <input type="text" name="inicio" value="{{inicio}}" hidden=True />
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="anio">Año:</label>
+                        </div>
+                        <div class="form_input">
+                            <input class="input_medium" type="text" name="anio" value="{{anio}}" readonly=True />
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="establecimiento">Establecimiento:</label> 
+                        </div>
+                        <div class="form_input">
+                            <input class="input_large" type="text" name="establecimiento" value="{{establecimiento_nombre}}" readonly=True />
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                        </div>
+                        <div class="form_input">
+                            <input type="text" name="establecimiento_id" value="{{establecimiento_id}}" hidden=True/>
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                            <label for="objeto">Objeto de gasto:</label>
+                        </div>
+                        <div class="form_input">
+                            <input class="input_large" type="text" name="objeto" value="{{objeto_nombre}}" readonly=True /> 
+                        </div>
+                    </div>
+
+                    <div class="form_dato">
+                        <div class="form_label">
+                        </div>
+                        <div class="form_input">
+                            <input type="text" name="objeto_id" value="{{objeto_id}}" hidden=True/> 
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <h4>P: Presupuesto</h4>
+                <h4>G: Gasto</h4>
+
+        </div> 
+        <div id="content_ingresar_pyg_part_2">       
+
+                <div class="table_pyg">
+                    <table>
+
+                        <tr>
+                            <th class="titulo_pyg" colspan="2">ENE</th>
+                            <th class="titulo_pyg" colspan="2">FEB</th>
+                            <th class="titulo_pyg" colspan="2">MAR</th>
+                            <th class="titulo_pyg" colspan="2">ABR</th>
+                            <th class="titulo_pyg" colspan="2">MAY</th>
+                            <th class="titulo_pyg" colspan="2">JUN</th>
+                            <th class="titulo_pyg" colspan="2">JUL</th>
+                            <th class="titulo_pyg" colspan="2">AGO</th>
+                            <th class="titulo_pyg" colspan="2">SEP</th>
+                            <th class="titulo_pyg" colspan="2">OCT</th>
+                            <th class="titulo_pyg" colspan="2">NOV</th>
+                            <th class="titulo_pyg" colspan="2">DIC</th>
+                        </tr>
+
+                        <tr>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                        </tr>
+
+                        <tr>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="pre_ene" value=0 required /></th>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="gas_ene"value=0 required /></th>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="pre_feb"value=0 required /></th>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="gas_feb"value=0 required /></th>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="pre_mar"value=0 required /></th>
+                            <th><input  class="decimal_pyg"  type="floatformat" name="gas_mar"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_abr"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_abr"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_may"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_may"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_jun"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_jun"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_jul"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_jul"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_ago"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_ago"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_sep"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_sep"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_oct"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_oct"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_nov"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_nov"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="pre_dic"value=0 required /></th>
+                            <th><input class="decimal_pyg"  type="floatformat" name="gas_dic"value=0 required /></th>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <br>
+                <button class="button_normal"><a href="{% url 'url_ingresar_pyg' %}">Atrás</a></button>
+                <input class="input_in" type="submit" value="Guardar" />
+
+            </form>
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,130 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+
+    <div id="content_informes_part_1">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3>{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="anio">Año:</label>
+                    </div>
+                    <div class="form_input">
+                        <input type="text" name="anio" value="{{anio}}" readonly=True /> 
+                    </div>
+                </div>
+                
+            </div>
+
+            <br>
+            <h4>P: Presupuesto</h4>
+            <h4>G: Gasto</h4>
+
+        </form>
+
+    </div>
+
+    <div id="content_informes_part_2"> 
+
+        <h3><bold>POR ESTABLECIMIENTO</bold></h3>
+
+        {% for est in lista_por_est %}
+
+            {% if est %}
+                <br>
+                <h4>{{est.0.0.0.establecimiento}}</h4>
+
+                <div class="table_informes">
+                    <table>
+
+                        <tr>
+                                <th class="titulo_pyg"></th>
+                                <th class="titulo_pyg" colspan="2">ENE</th>
+                                <th class="titulo_pyg" colspan="2">FEB</th>
+                                <th class="titulo_pyg" colspan="2">MAR</th>
+                                <th class="titulo_pyg" colspan="2">ABR</th>
+                                <th class="titulo_pyg" colspan="2">MAY</th>
+                                <th class="titulo_pyg" colspan="2">JUN</th>
+                                <th class="titulo_pyg" colspan="2">JUL</th>
+                                <th class="titulo_pyg" colspan="2">AGO</th>
+                                <th class="titulo_pyg" colspan="2">SEP</th>
+                                <th class="titulo_pyg" colspan="2">COT</th>
+                                <th class="titulo_pyg" colspan="2">NOV</th>
+                                <th class="titulo_pyg" colspan="2">DIC</th>
+                        </tr>
+    
+                        <tr>
+                            <th class="titulo_pyg">OBJETO GASTO</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                            <th class="titulo_pyg">P</th>
+                            <th class="titulo_pyg">G</th>
+                        </tr>
+                    
+                        {% for objeto in est %}
+    
+                            {% if objeto %}
+                                <tr>
+    
+                                    <th>{{objeto.0.0.objeto_gasto}}</th>
+    
+                                    {% for mes in objeto %}
+                                        {% for registro in mes %}
+                                            <th class="decimal_pyg">{{registro.presupuesto}}</th>
+                                            <th class="decimal_pyg">{{registro.gasto}}</th>
+                                        {% endfor %}
+                                    {% endfor %}
+    
+                                </tr>
+                            {% endif %}
+    
+                        {% endfor %}
+    
+                    </table>
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+        <br>
+        <button class="button_normal"><a href="{% url 'url_mostrar_informes' %}">Atrás</a></button>
+    
+    </div>
+
+{% endblock %}

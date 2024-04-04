@@ -1,0 +1,40 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_mostrar_informes">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="anio">Año:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_medium" type="number" name="anio" placeholder="Ingrese año" required />
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <button class="button_normal"><a href="{% url 'url_presupuestos_gastos' %}">Atrás</a></button>
+            <input class="input_in" id="input_mostrar_inf" type="submit" value="Mostrar Informes" />
+
+        </form>
+
+    </div>
+{% endblock %}

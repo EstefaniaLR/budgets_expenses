@@ -1,0 +1,58 @@
+﻿
+{% extends 'layouts/layout_initial.html' %}
+
+{% block title %}{{titulo}} - Lib ConS{% endblock %}
+
+{% block content %}
+    <div id="content_login">
+
+        <h2>{{titulo}}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="correo_electronico">Correo electrónico:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="correo_electronico" placeholder="Ingrese su correo electrónico" required/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="nombre_usuario">Nombre de usuario:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="nombre_usuario" placeholder="Ingrese un nombre de usuario" required/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="clave">Clave:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="password" name="clave" placeholder="Ingrese una clave" required/>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <button class="button_normal"><a href="{% url 'url_initial' %}">Atrás</a></button>
+            <input class="input_in" type="submit" value="Entrar" />
+
+        </form>
+
+    </div>
+{% endblock %}

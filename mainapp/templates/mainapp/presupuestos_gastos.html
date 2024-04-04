@@ -1,0 +1,24 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_pyg">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <ul>
+            <li><a class="text_pyg" href="{% url 'url_ingresar_pyg' %}">Ingresar</a></li>
+            <br>
+            <li><a class="text_pyg" href="{% url 'url_mostrar_informes' %}">Mostrar informes</a></li>
+        </ul>
+
+    </div>
+{% endblock %}

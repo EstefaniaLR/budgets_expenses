@@ -1,0 +1,93 @@
+﻿
+{% extends 'layouts/layout_home.html' %}
+
+{% block title %} {{ titulo }} {% endblock %}
+
+{% block content %}
+    <div id="content_ingresar">
+
+        <h2>{{ titulo }}</h2>
+
+        {% if messages %}
+            {% for mensaje in messages %}
+                <h3 class="mensaje">{{mensaje}}</h3>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form_data">
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="codigo">Código:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="codigo" placeholder="Ingrese código" required/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="nombre">Nombre:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="nombre" placeholder="Ingrese nombre" required/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="jefe_zona">Jefe de zona:</label> 
+                    </div>
+                    <div class="form_input">
+                        <select class="input_large" name="jefe_zona" required>
+                            {% for jefe_zona in op_jefe_zona %}
+                                <option value={{jefe_zona.bd}}>{{jefe_zona.human}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="ciudad">Ciudad:</label> 
+                    </div>
+                    <div class="form_input">
+                        <select class="input_large" name="ciudad" required>
+                            {% for ciudad in op_ciudad %}
+                                <option value={{ciudad.bd}}>{{ciudad.human}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="telefono">Teléfono:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="number" name="telefono" placeholder="Ingrese teléfono" required/>
+                    </div>
+                </div>
+
+                <div class="form_dato">
+                    <div class="form_label">
+                        <label for="direccion">Dirección:</label>
+                    </div>
+                    <div class="form_input">
+                        <input class="input_large" type="text" name="direccion" placeholder="Ingrese dirección" required/>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <button class="button_normal"><a href="{% url 'url_establecimientos' %}">Atrás</a></button>
+            <input class="input_in" type="submit" value="Ingresar" />
+
+        </form>
+
+    </div>
+{% endblock %}
